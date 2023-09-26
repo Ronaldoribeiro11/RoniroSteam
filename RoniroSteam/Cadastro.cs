@@ -9,16 +9,27 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace RoniroSteam
 {
     public partial class Cadastro : Form
     {
+        private int id;
         public Cadastro()
         {
             InitializeComponent();
         }
-
+        public Cadastro(Usuario usuario)
+        {
+            InitializeComponent();
+            Cadastrar.Text = "Editar";
+            txt1.Text = usuario.nome;
+            txt2.Text = usuario.email;
+            txtm.Text = usuario.numerocell;
+            txt4.Text = usuario.senha;
+            id = usuario.Id;
+        }
         private void Form2_Load(object sender, EventArgs e)
         {
 
@@ -50,66 +61,95 @@ namespace RoniroSteam
 
         private void Cadastrar_Click(object sender, EventArgs e)
         {
-            string email = txt2.Text;
-
-            Conecte conecte = new Conecte();
-            SqlCommand sqlCommand = new SqlCommand();
-
-            sqlCommand.Connection = conecte.ReturnConnection();
-            sqlCommand.CommandText = @"INSERT INTO CadastroSteam VALUES (@Nome, @Email, @NumeroCell, @senha)";
-
-            sqlCommand.Parameters.AddWithValue("@Nome", txt1.Text);
-            sqlCommand.Parameters.AddWithValue("@Email", txt2.Text);
-            sqlCommand.Parameters.AddWithValue("@NumeroCell", txtm.Text);
-            sqlCommand.Parameters.AddWithValue("@Senha", txt4.Text);
-
-
-
-            string telefone = txtm.Text;
-
-            if (IsValidPhoneNumber(telefone))
+            if (Cadastrar.Text == "Cadastrar")
             {
-                if (IsValidEmail(email))
+                string email = txt2.Text;
+
+                Conecte conecte = new Conecte();
+                SqlCommand sqlCommand = new SqlCommand();
+
+                sqlCommand.Connection = conecte.ReturnConnection();
+                sqlCommand.CommandText = @"INSERT INTO CadastroSteam VALUES (@Nome, @Email, @NumeroCell, @senha)";
+
+                sqlCommand.Parameters.AddWithValue("@Nome", txt1.Text);
+                sqlCommand.Parameters.AddWithValue("@Email", txt2.Text);
+                sqlCommand.Parameters.AddWithValue("@NumeroCell", txtm.Text);
+                sqlCommand.Parameters.AddWithValue("@Senha", txt4.Text);
+
+
+
+                string telefone = txtm.Text;
+
+                if (IsValidPhoneNumber(telefone))
                 {
-                    if (string.IsNullOrWhiteSpace(txt1.Text))
+                    if (IsValidEmail(email))
                     {
-                        MessageBox.Show("Digite o Nome");
-                        txt1.Clear();
-                        if (string.IsNullOrWhiteSpace(txt4.Text))
+                        if (string.IsNullOrWhiteSpace(txt1.Text))
                         {
-                            MessageBox.Show("Digite a senha");
-                            txt2.Clear();
+                            MessageBox.Show("Digite o Nome");
+                            txt1.Clear();
+                            if (string.IsNullOrWhiteSpace(txt4.Text))
+                            {
+                                MessageBox.Show("Digite a senha");
+                                txt2.Clear();
+                            }
                         }
+                        sqlCommand.ExecuteNonQuery();
+                        MessageBox.Show("Cadastrar com sucesso",
+                        "AVISO",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                        txt1.Clear();
+                        txt2.Clear();
+                        txt4.Clear();
+                        txtm.Clear();
+                        Layout1 cadastro = new Layout1();
+                        cadastro.Hide();
                     }
-                    sqlCommand.ExecuteNonQuery();
-                    MessageBox.Show("Cadastrar com sucesso",
-                    "AVISO",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                    txt1.Clear();
-                    txt2.Clear();
-                    txt4.Clear();
-                    txtm.Clear();
-                    Layout1 cadastro = new Layout1();
-                    cadastro.Hide();
+                    else
+                    {
+                        MessageBox.Show("O endereço de E-mail é inválido");
+                        txt2.Clear();
+                    }
+
                 }
                 else
                 {
-                    MessageBox.Show("O endereço de E-mail é inválido");
-                    txt2.Clear();
+                    MessageBox.Show("O Numero de telefone é inválido");
+                    txtm.Clear();
                 }
-
             }
             else
             {
-                MessageBox.Show("O Numero de telefone é inválido");
-                txtm.Clear();
-            }
-            
-            
+                Conecte connection = new Conecte();
+                SqlCommand sqlCommand = new SqlCommand();
 
-            
-            
+                sqlCommand.Connection = connection.ReturnConnection();
+                sqlCommand.CommandText = @"UPDATE CadastroSteam SET 
+                Nome       = @Nome, 
+                Email = @Email,
+                NumeroCell        = @NumeroCell, 
+                Senha  = @Senha 
+                WHERE Id   = @id"
+                ;
+
+                sqlCommand.Parameters.AddWithValue("@Nome", txt1.Text);
+                sqlCommand.Parameters.AddWithValue("@Email", txt2.Text);
+                sqlCommand.Parameters.AddWithValue("@NumeroCell", txtm.Text);
+                sqlCommand.Parameters.AddWithValue("@Senha", txt4.Text);
+                sqlCommand.Parameters.AddWithValue("@id", id);
+
+                sqlCommand.ExecuteNonQuery();
+
+                MessageBox.Show("Cadastrado com sucesso",
+                    "AVISO",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+
+
+
+
 
 
 

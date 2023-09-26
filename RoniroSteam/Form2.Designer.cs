@@ -35,9 +35,9 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.painelSenha = new System.Windows.Forms.Panel();
-            this.textSenha = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.entrar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textSenha = new System.Windows.Forms.TextBox();
             this.painelSenha.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,6 +49,7 @@
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5});
+            this.tabelinha.FullRowSelect = true;
             this.tabelinha.HideSelection = false;
             this.tabelinha.Location = new System.Drawing.Point(12, 12);
             this.tabelinha.Name = "tabelinha";
@@ -57,6 +58,7 @@
             this.tabelinha.UseCompatibleStateImageBehavior = false;
             this.tabelinha.View = System.Windows.Forms.View.Details;
             this.tabelinha.SelectedIndexChanged += new System.EventHandler(this.tabelinha_SelectedIndexChanged);
+            this.tabelinha.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.tabelinha_MouseDoubleClick);
             // 
             // columnHeader1
             // 
@@ -97,12 +99,15 @@
             this.painelSenha.Size = new System.Drawing.Size(347, 100);
             this.painelSenha.TabIndex = 1;
             // 
-            // textSenha
+            // entrar
             // 
-            this.textSenha.Location = new System.Drawing.Point(40, 39);
-            this.textSenha.Name = "textSenha";
-            this.textSenha.Size = new System.Drawing.Size(262, 20);
-            this.textSenha.TabIndex = 0;
+            this.entrar.Location = new System.Drawing.Point(128, 65);
+            this.entrar.Name = "entrar";
+            this.entrar.Size = new System.Drawing.Size(75, 23);
+            this.entrar.TabIndex = 2;
+            this.entrar.Text = "Entrar";
+            this.entrar.UseVisualStyleBackColor = true;
+            this.entrar.Click += new System.EventHandler(this.entrar_Click);
             // 
             // label1
             // 
@@ -113,15 +118,12 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Senha de Adiministrador";
             // 
-            // entrar
+            // textSenha
             // 
-            this.entrar.Location = new System.Drawing.Point(128, 65);
-            this.entrar.Name = "entrar";
-            this.entrar.Size = new System.Drawing.Size(75, 23);
-            this.entrar.TabIndex = 2;
-            this.entrar.Text = "Entrar";
-            this.entrar.UseVisualStyleBackColor = true;
-            this.entrar.Click += new System.EventHandler(this.entrar_Click);
+            this.textSenha.Location = new System.Drawing.Point(40, 39);
+            this.textSenha.Name = "textSenha";
+            this.textSenha.Size = new System.Drawing.Size(262, 20);
+            this.textSenha.TabIndex = 0;
             // 
             // Form2
             // 

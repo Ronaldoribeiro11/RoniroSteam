@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace RoniroSteam
 {
@@ -50,6 +51,7 @@ namespace RoniroSteam
                     lv.SubItems.Add(tel);
                     lv.SubItems.Add(Senha);
                     tabelinha.Items.Add(lv);
+                    //foi
 
                 }
                 dr.Close();
@@ -82,6 +84,22 @@ namespace RoniroSteam
                 tabelinha.Visible = true;
                 painelSenha.Visible = false;
             }
+        }
+
+        private void tabelinha_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index;
+            index = tabelinha.FocusedItem.Index;
+            
+            int id = int.Parse(tabelinha.Items[index].SubItems[0].Text);
+            string nome = tabelinha.Items[index].SubItems[1].Text;
+            string email = tabelinha.Items[index].SubItems[2].Text;
+            string numerocell = tabelinha.Items[index].SubItems[3].Text;
+            string senha = tabelinha.Items[index].SubItems[4].Text;
+            Usuario usuario = new Usuario(id, nome, email, numerocell, senha);
+
+            Cadastro cad = new Cadastro(usuario);
+            cad.Show();
         }
     }
 }
