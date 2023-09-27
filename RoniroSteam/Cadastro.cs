@@ -141,7 +141,7 @@ namespace RoniroSteam
 
                 sqlCommand.ExecuteNonQuery();
 
-                MessageBox.Show("Cadastrado com sucesso",
+                MessageBox.Show("Editado com sucesso",
                     "AVISO",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -188,6 +188,30 @@ namespace RoniroSteam
         {
             Form2 form2 = new Form2();
             form2.Show();
+        }
+
+        private void excluir_Click(object sender, EventArgs e)
+        {
+            //Código para excluir
+            Conecte connection = new Conecte();
+            SqlCommand sqlCommand = new SqlCommand();
+
+            sqlCommand.Connection = connection.ReturnConnection();
+            sqlCommand.CommandText = @"DELETE FROM CadastroSteam WHERE Id = @id";
+            sqlCommand.Parameters.AddWithValue("@id", id);
+            try
+            {
+                sqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception err)
+            {
+                throw new Exception("Erro: Problemas ao excluir usuário no banco.\n" + err.Message);
+            }
+            finally
+            {
+                connection.CloseConnection();
+            }
+
         }
     }
 }

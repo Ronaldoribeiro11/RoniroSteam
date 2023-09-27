@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+
 namespace RoniroSteam
 {
     public partial class Layout1 : Form
@@ -19,75 +21,137 @@ namespace RoniroSteam
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void Cadastrar_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Cadastro Layout1 = new Cadastro();
-            Layout1.Show();
-        }
-
-        private void label1_Click_2(object sender, EventArgs e)
+        private void Txtn_TextChanged(object sender, EventArgs e)
         {
 
         }
 
         private void Login_Click(object sender, EventArgs e)
         {
-            
+            string connectionString = "Data Source=LAPTOP-9TN8R1CF\\SQLEXPRESS;Initial Catalog=InvestimentosMais;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            string query = "SELECT * FROM CadastroSteam WHERE Nome = @Nome AND Senha = @Senha";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@NomeUsuario", txt1.Text);
+            command.Parameters.AddWithValue("@Senha", txt2.Text);
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+                // O nome de usuário e a senha estão corretos
+                // Abrir o próximo formulário
+                Form1 form1 = new Form1();
+                form1.Show();
+            }
+            else
+            {
+                // O nome de usuário e a senha estão incorretos
+                MessageBox.Show("Nome de usuário ou senha inválidos");
+            }
+            connection.Close();
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void Senha_TextChanged(object sender, EventArgs e)
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+          Cadastro cadastro = new Cadastro();
+            cadastro.Show();
+        }
     }
-}
+    namespace AutenticacaoDeUsuario
+    {
+        public partial class LoginForm : Form
+        {
+            
+
+
+
+
+            private void Form1_Load(object sender, EventArgs e)
+            {
+
+            }
+
+            private void label1_Click(object sender, EventArgs e)
+            {
+
+            }
+
+            private void label1_Click_1(object sender, EventArgs e)
+            {
+
+            }
+
+            private void label2_Click(object sender, EventArgs e)
+            {
+
+            }
+
+            private void textBox1_TextChanged(object sender, EventArgs e)
+            {
+
+            }
+
+            private void textBox4_TextChanged(object sender, EventArgs e)
+            {
+
+            }
+
+            private void button1_Click(object sender, EventArgs e)
+            {
+
+            }
+
+            private void Cadastrar_KeyPress(object sender, KeyPressEventArgs e)
+            {
+
+            }
+
+            private void groupBox1_Enter(object sender, EventArgs e)
+            {
+
+            }
+
+            private void pictureBox1_Click(object sender, EventArgs e)
+            {
+
+            }
+
+            private void button2_Click(object sender, EventArgs e)
+            {
+                Cadastro Layout1 = new Cadastro();
+                Layout1.Show();
+            }
+
+            private void label1_Click_2(object sender, EventArgs e)
+            {
+
+            }
+
+            
+                    
+                    }
+               }
+            }
+       
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
