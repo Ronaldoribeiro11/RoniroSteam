@@ -124,6 +124,7 @@
             this.textSenha.Name = "textSenha";
             this.textSenha.Size = new System.Drawing.Size(262, 20);
             this.textSenha.TabIndex = 0;
+            this.textSenha.TextChanged += new System.EventHandler(this.textSenha_TextChanged);
             // 
             // Form2
             // 

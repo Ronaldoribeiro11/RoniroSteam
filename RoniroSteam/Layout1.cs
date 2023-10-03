@@ -28,13 +28,14 @@ namespace RoniroSteam
 
         private void Login_Click(object sender, EventArgs e)
         {
-            string connectionString = "Data Source=LAPTOP-9TN8R1CF\\SQLEXPRESS;Initial Catalog=InvestimentosMais;Integrated Security=True";
-            SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
+            Conecte conecte = new Conecte();
+            SqlCommand command = new SqlCommand();
+            command.Connection = conecte.ReturnConnection();
 
-            string query = "SELECT * FROM CadastroSteam WHERE Nome = @Nome AND Senha = @Senha";
-            SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@NomeUsuario", txt1.Text);
+
+            command.CommandText = "SELECT * FROM CadastroSteam WHERE Nome = @Nome AND Senha = @Senha";
+
+            command.Parameters.AddWithValue("@Nome", txt1.Text);
             command.Parameters.AddWithValue("@Senha", txt2.Text);
             SqlDataReader reader = command.ExecuteReader();
             if (reader.HasRows)
@@ -49,8 +50,9 @@ namespace RoniroSteam
                 // O nome de usuário e a senha estão incorretos
                 MessageBox.Show("Nome de usuário ou senha inválidos");
             }
-            connection.Close();
-        }
+
+       
+    }
 
         private void Senha_TextChanged(object sender, EventArgs e)
         {

@@ -101,5 +101,10 @@ namespace RoniroSteam
             Cadastro cad = new Cadastro(usuario);
             cad.Show();
         }
+
+        private void textSenha_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
