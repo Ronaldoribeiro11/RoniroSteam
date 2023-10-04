@@ -125,6 +125,7 @@
             this.textSenha.Size = new System.Drawing.Size(262, 20);
             this.textSenha.TabIndex = 0;
             this.textSenha.TextChanged += new System.EventHandler(this.textSenha_TextChanged);
+            this.textSenha.UseSystemPasswordChar = true;
             // 
             // Form2
             // 

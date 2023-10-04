@@ -16,6 +16,7 @@ namespace RoniroSteam
     {
         public Form2()
         {
+            InitializeComponent();
             tabelinha.Visible = false;
             painelSenha.Visible = true;
 
