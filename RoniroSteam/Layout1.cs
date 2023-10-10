@@ -63,6 +63,9 @@ namespace RoniroSteam
         {
           Cadastro cadastro = new Cadastro();
             cadastro.Show();
+            Layout1 layout1 = new Layout1();
+            layout1.Hide();
+
         }
     }
     namespace AutenticacaoDeUsuario
