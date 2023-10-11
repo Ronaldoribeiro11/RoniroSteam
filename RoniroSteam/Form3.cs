@@ -31,9 +31,26 @@ namespace RoniroSteam
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            //string html = "<html><head>"; html += "<meta content='IE=Edge' http-equiv='X-UA-Compatible'/>"; html += "<center><iframe id='video' src='https://www.youtube.com/embed/{0}?autoplay={1}' width='{2}' height='{3}' frameborder='0' allowfullscreen='true'></iframe></center>"; html += "</body></html>";
-           // string txtUrl = "https://www.youtube.com/";
-            //webBrowser1.DocumentText = string.Format(html, txtUrl.Trim().Split('=')[1], "1", 560, 315);
+            string html = "<html><head>"; html += "<meta content='IE=Edge' http-equiv='X-UA-Compatible'/>"; html += "<center><iframe id='video' src='https://www.youtube.com/embed/{0}?autoplay={1}' width='{2}' height='{3}' frameborder='0' allowfullscreen='true'></iframe></center>"; html += "</body></html>";
+            string txtUrl = "https://www.youtube.com/watch?v=qVPmYAClXdA"; 
+            webBrowser1.DocumentText = string.Format(html, txtUrl.Trim().Split('=')[1], "1", 560, 315);
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(330, 590);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://tetr.io/");
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -20,7 +20,6 @@ namespace RoniroSteam
         {
             InitializeComponent();
         }
-
         private void Txtn_TextChanged(object sender, EventArgs e)
         {
 
@@ -44,6 +43,8 @@ namespace RoniroSteam
                 // Abrir o próximo formulário
                 Form1 form1 = new Form1();
                 form1.Show();
+                Form3 form3 = new Form3();
+                form3.Show();
             }
             else
             {
@@ -51,8 +52,8 @@ namespace RoniroSteam
                 MessageBox.Show("Nome de usuário ou senha inválidos");
             }
 
-       
-    }
+
+        }
 
         private void Senha_TextChanged(object sender, EventArgs e)
         {
@@ -61,10 +62,11 @@ namespace RoniroSteam
 
         private void button2_Click(object sender, EventArgs e)
         {
-          Cadastro cadastro = new Cadastro();
+            Cadastro cadastro = new Cadastro();
             cadastro.Show();
             Layout1 layout1 = new Layout1();
             layout1.Hide();
+            this.Visible = false;
 
         }
     }
@@ -72,7 +74,7 @@ namespace RoniroSteam
     {
         public partial class LoginForm : Form
         {
-            
+
 
 
 
@@ -138,13 +140,13 @@ namespace RoniroSteam
 
             }
 
-            
-                    
-                    }
-               }
-            }
-       
-    
+
+
+        }
+    }
+}
+
+
 
 
 

@@ -103,8 +103,9 @@ namespace RoniroSteam
                         txt2.Clear();
                         txt4.Clear();
                         txtm.Clear();
-                        Layout1 cadastro = new Layout1();
-                        cadastro.Hide();
+                        Layout1 layout1 = new Layout1();
+                        layout1.Show();
+                        this.Visible = false;
                     }
                     else
                     {
